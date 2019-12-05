@@ -1,0 +1,17 @@
+{
+  "name": "cs313-project2",
+  "version": "1.0.0",
+  "description": "Project 2 for CS313.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Wendy Maxwell",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.0.1",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.1",
+    "pg": "^7.14.0"
+  }
+}
