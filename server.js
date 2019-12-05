@@ -8,8 +8,6 @@ const { Pool } = require("pg");
 const connectionString = process.env.DATABASE_URL || "postgres://bookcataloguser:read@localhost:5432/bookcatalog";
 const pool = new Pool({connectionString: connectionString});
 
-const myapikey = "20a6c88e296ccb9a84900de16bdc0d715e85d073";
-
 app.use(express.static(path.join(__dirname, 'public')))
 
 app.use(bodyParser.urlencoded({ 
