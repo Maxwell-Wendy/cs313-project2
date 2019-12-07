@@ -65,7 +65,7 @@ function searchAPI(req, res) {
             console.log(title);
 
             var authors = result.items[i].volumeInfo.authors;
-            console.log(authors[0]);
+            //console.log(authors[0]);
 
             var id = result.items[i].id;
             console.log(id);
