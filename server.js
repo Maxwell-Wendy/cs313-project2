@@ -70,7 +70,8 @@ function searchAPI(req, res) {
             var id = result.items[i].id;
             console.log(id);
             
-            var author = authors[0];
+            //var author = authors[0];
+            var author = authors;
             //var author = "";
 
             /*if(authors.length > 1){
