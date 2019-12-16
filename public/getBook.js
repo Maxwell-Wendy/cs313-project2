@@ -33,8 +33,8 @@ function getBook(req, res) {
             console.log(author);
             var id = result[i].id;
             console.log(id);
-            var googleID = result[i].googleid;
-            console.log(googleID);
+            var googleid = result[i].googleid;
+            console.log(googleid);
         }
         res.render('showUserBook', params);
     });

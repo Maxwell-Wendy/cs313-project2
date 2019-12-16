@@ -17,7 +17,7 @@ function saveBook(req, res) {
     saveBookToDB.saveBookToDB(id, title, author, function(error, result) {
 
         console.log("just checking...");
-        var params = { title: title, author: author};
+        var params = { title: title, author: author, result: result};
         res.render('showUserBook', params);
     });
 }

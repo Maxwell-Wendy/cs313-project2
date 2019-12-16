@@ -18,8 +18,8 @@ GRANT SELECT, INSERT, UPDATE ON book TO bookcataloguser;
 GRANT USAGE, SELECT ON SEQUENCE book_id_seq TO bookcataloguser;
 
 ALTER TABLE book
-    ADD COLUMN googleID VARCHAR(20) UNIQUE,
-    ADD COLUMN isRead BOOLEAN,
-    ADD COLUMN isOwed BOOLEAN,
-    ADD COLUMN isWishList BOOLEAN,
-    ADD COLUMN dateRead DATE;
+    ADD COLUMN googleid VARCHAR(20) UNIQUE,
+    ADD COLUMN isread BOOLEAN,
+    ADD COLUMN isowed BOOLEAN,
+    ADD COLUMN iswishlist BOOLEAN,
+    ADD COLUMN dateread DATE;
