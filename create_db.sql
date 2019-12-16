@@ -16,4 +16,10 @@ INSERT INTO book (title, author)
 CREATE USER bookcataloguser WITH PASSWORD 'read';
 GRANT SELECT, INSERT, UPDATE ON book TO bookcataloguser;
 GRANT USAGE, SELECT ON SEQUENCE book_id_seq TO bookcataloguser;
-    
+
+ALTER TABLE book
+    ADD COLUMN googleID VARCHAR(20) UNIQUE,
+    ADD COLUMN isRead BOOLEAN,
+    ADD COLUMN isOwed BOOLEAN,
+    ADD COLUMN isWishList BOOLEAN,
+    ADD COLUMN dateRead DATE;
