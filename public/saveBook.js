@@ -15,9 +15,19 @@ function saveBook(req, res) {
     console.log("author", author);
 
     saveBookToDB.saveBookToDB(id, title, author, function(error, result) {
-
-        console.log("just checking...");
-        var params = { title: title, author: author, result: result};
-        res.render('showUserBook', params);
+        
+        if (result) {
+            var message = "Book saved.";
+            console.log("just checking..."); 
+            var params = { message: message };
+            res.render('showSavedStatus', params);
+        }
+        else {
+            var message = "There was a problem saving the book. Duplicate books are not allowed.";
+            console.log("problems...");
+            var params = { message: message };
+            res.render('showSavedStatus', params);
+        }
+        
     });
 }

@@ -13,11 +13,11 @@ function searchAPI(req, res) {
     console.log(searchText);
 
     
-    searchGoogleAPI.searchGoogleAPI(searchText, function(error, result) {
+    searchGoogleAPI.searchGoogleAPI(searchText, function(err, result) {
         console.log(result.items.length);
 
-        listOfBooks = [];
-        listOfIDs = [];
+        //listOfBooks = [];
+        //listOfIDs = [];
 
         message = "Here are the top 20 matches to your search term. Select a book to show its details."
 
@@ -30,14 +30,13 @@ function searchAPI(req, res) {
             var id = result.items[i].id;
             console.log(id);
 
-            var book = title + " by " + author;
+            //var book = title + " by " + author;
 
-            listOfBooks.push(book);
-            listOfIDs.push(id);
+            //listOfBooks.push(book);
+            //listOfIDs.push(id);
         }
         
-        var params = {listOfBooks: listOfBooks, 
-                        listOfIDs: listOfIDs};
-        res.render('getDetails', params);
+        var params = { result: result };
+        res.render('showGoogleBooksList', params);
     });
 }

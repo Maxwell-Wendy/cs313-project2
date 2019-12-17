@@ -11,16 +11,22 @@ function saveBookToDB (id, title, author, callback) {
     const sql = "INSERT INTO book (googleid, title, author) VALUES ($1::text, $2::text, $3::text)";
     
 
-    /*pool.query(sql, params, function(err, result) {
-        if (err) {
-            console.log("error in attempt to save");
-            callback(err, null);
+    pool.query(sql, params, (err, result) => {
+        if (err !== undefined) {
+            console.log("error in attempt to save", err);
+            //callback(err, null);
         }
-        console.log("here's the book " + JSON.stringify(result.rows));
-        callback(null, result.rows);
-    });*/
+        if (result !== undefined) {
+          if (result.rowCount > 0) {
+            console.log("# of records inserted:", result.rowCount);
+          } else {
+            console.log("No records were inserted.");
+          }
+        }
+        callback(null, result);
+    });
 
-    pool.query(sql, params, (err, res) => {
+    /*pool.query(sql, params, (err, res) => {
         if (err !== undefined) {
           // log the error to console
           console.log("Postgres INSERT error:", err);
@@ -52,5 +58,5 @@ function saveBookToDB (id, title, author, callback) {
           }
         }
         callback(null, res);
-      });
+      });*/
 }

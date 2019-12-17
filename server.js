@@ -33,6 +33,7 @@ var searchAPI = require('./public/searchAPI')(app);
 var getBook = require('./public/getBook')(app);
 var getDetails = require('./public/getDetails')(app);
 var saveBook = require('./public/saveBook')(app);
+var changeBookDetails = require('./public/changeBookDetails')(app);
 
 app.listen(app.get('port'), function() {
     console.log("Listening on port: ", app.get('port'));

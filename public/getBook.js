@@ -8,18 +8,14 @@ function getBook(req, res) {
     console.log("Getting book info");
 
     var searchText = req.body.searchText;
+    var nextStep = req.body.nextStep;
+    var searchBy = req.body.searchBy;
+    
 
-    //var text = req.body.searchText;
-    //var constraint = req.body.constraint;
-    //var searchText = constraint + "'" + text +"'";
-
-    getBookFromDatabase.getBookFromDatabase(searchText, function(error, result) {
+    getBookFromDatabase.getBookFromDatabase(searchText, searchBy, function(error, result) {
         console.log("Here's the result ", result);
-        //console.log(result.length);
-        var params = {
-            title: title, 
-            author: author,
-            result: result};
+        var message = "";
+        var params = { result: result, message: message };
 
         for (i=0; i < result.length; i++) {
             Object.entries(result[i]).forEach(
@@ -28,7 +24,6 @@ function getBook(req, res) {
             
             var title = result[i].title;
             console.log(title);
-
             var author = result[i].author;
             console.log(author);
             var id = result[i].id;
@@ -36,6 +31,15 @@ function getBook(req, res) {
             var googleid = result[i].googleid;
             console.log(googleid);
         }
-        res.render('showUserBook', params);
+        if (nextStep == "search") {
+            res.render('searchUserBooks', params);
+        }
+        else if (nextStep == "change") {
+            res.render('modifyUserBooks', params);
+        }
+        else {
+            message = "Here are your search results.";
+            res.render('showUserBooksList', params);
+        }
     });
 }

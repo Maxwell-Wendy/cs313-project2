@@ -6,6 +6,8 @@ var searchGoogleAPI = require('./searchGoogleAPI');
 
 function getDetails(req, res) {
     var id = req.body.id;
+    var inDB = req.body.inDB;
+
     console.log("Here's the id", id);
 
     searchGoogleAPI.searchGoogleAPI(id, function(error, result) {
@@ -27,12 +29,8 @@ function getDetails(req, res) {
         var id = result.items[0].id;
 
         message = "Here are the details for your selected book:";
-        listOfIDs = "";
-        listOfBooks = "";
 
-        var params = {listOfBooks: listOfBooks, 
-                        listOfIDs: listOfIDs, 
-                        message: message, 
+        var params = {  message: message, 
                         title: title,
                         author: author,
                         publisher: publisher,
@@ -41,9 +39,7 @@ function getDetails(req, res) {
                         description: description, 
                         imageURL: imageURL,
                         id: id,
-                        btn_vis: "d-none", 
-                        img_vis: "d-block"};
+                        inDB: inDB};
         res.render('showDetails', params);
-
     });
 }
