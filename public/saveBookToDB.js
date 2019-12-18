@@ -1,20 +1,23 @@
 module.exports.saveBookToDB = saveBookToDB;
 
 const { Pool } = require('pg');
+var session = require('express-session');
 
 const connectionString = process.env.DATABASE_URL || "postgres://bookcataloguser:read@localhost:5432/bookcatalog";
 const pool = new Pool({connectionString: connectionString});
 
-function saveBookToDB (id, title, author, callback) {
+function saveBookToDB (id, title, author, username, callback) {
     console.log("save book with title " + title);
     params = [id, title, author];
-    const sql = "INSERT INTO book (googleid, title, author) VALUES ($1::text, $2::text, $3::text)";
+    var searchBy = "";
+    const sql = "INSERT INTO book (googleid, title, author) " +
+                "VALUES ($1::text, $2::text, $3::text) " +
+                "ON CONFLICT (googleid) DO NOTHING;";
     
-
     pool.query(sql, params, (err, result) => {
         if (err !== undefined) {
             console.log("error in attempt to save", err);
-            //callback(err, null);
+
         }
         if (result !== undefined) {
           if (result.rowCount > 0) {
@@ -25,6 +28,8 @@ function saveBookToDB (id, title, author, callback) {
         }
         callback(null, result);
     });
+
+    
 
     /*pool.query(sql, params, (err, res) => {
         if (err !== undefined) {

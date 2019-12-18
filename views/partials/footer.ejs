@@ -1,19 +1,25 @@
 
-    <div class="jumbotron text-center" style="margin-bottom:0">
+    <div class="jumbotron text-center bg-primary" style="margin-bottom:0">
         <h1>Search Google Books</h1>            
     </div>
                 
     <div class="container" style="margin-top:30px">
-        <h3>Enter a book title to search Google Books:</h3>
-        <form class="form-group" action="/searchAPI" method="POST">
-            <input type="hidden" value="" name="searchBy">
-            <input type="text" class="form-control" name="searchText">
-            <input type="submit" class="btn btn-outline-primary" value="Search">
-        </form>
-        <h3>Enter an author's name to search Google Books:</h3>
-        <form class="form-group" action="/searchAPI" method="POST">
-            <input type="hidden" value="inauthor:" name="searchBy">
-            <input type="text" class="form-control" name="searchText">
-            <input type="submit" class="btn btn-outline-primary" value="Search">
-        </form>
+        <div class="row">
+            <div class="col-sm-6">
+                <h3>Enter a book title to search in Google Books:</h3>
+                <form class="form-group" action="/searchAPI" method="POST">
+                    <input type="hidden" value="" name="searchBy">
+                    <input type="text" class="form-control" name="searchText">
+                    <input type="submit" class="btn btn-outline-primary" value="Search">
+                </form>
+            </div>
+            <div class="col-sm-6">
+                <h3>Enter an author's name to search in Google Books:</h3>
+                <form class="form-group" action="/searchAPI" method="POST">
+                    <input type="hidden" value="inauthor:" name="searchBy">
+                    <input type="text" class="form-control" name="searchText">
+                    <input type="submit" class="btn btn-outline-primary" value="Search">
+                </form>
+            </div>
+        </div>
     </div>

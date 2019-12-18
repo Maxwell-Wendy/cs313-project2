@@ -3,6 +3,7 @@ module.exports = function(app) {
 }
 
 var getBookFromDatabase = require('./getBookFromDatabase');
+var session = require('express-session');
 
 function getBook(req, res) {
     console.log("Getting book info");
@@ -10,10 +11,13 @@ function getBook(req, res) {
     var searchText = req.body.searchText;
     var nextStep = req.body.nextStep;
     var searchBy = req.body.searchBy;
+    var username = req.session.username;
     
 
-    getBookFromDatabase.getBookFromDatabase(searchText, searchBy, function(error, result) {
+    getBookFromDatabase.getBookFromDatabase(searchText, searchBy, username, function(error, result) {
         console.log("Here's the result ", result);
+        console.log("user: ", username);
+        console.log(searchText);
         var message = "";
         var params = { result: result, message: message };
 

@@ -3,6 +3,7 @@ module.exports = function(app) {
 }
 
 var searchGoogleAPI = require('./searchGoogleAPI');
+var session = require('express-session');
 
 function getDetails(req, res) {
     var id = req.body.id;
