@@ -16,11 +16,12 @@ const pool = new Pool({connectionString: connectionString});
 
 //var listOfBooks = [];
 //var listOfIDs =[];
-
+app.set('trust proxy', 1);
 app.use(session({
     secret: 'very very secret',
     resave: false,
-    saveUninitialized: true
+    saveUninitialized: true,
+    cookie: { secure: true }
   }));
 
 app.use(express.static(path.join(__dirname, 'public')))
